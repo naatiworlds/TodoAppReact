@@ -100,6 +100,7 @@ function Formulario({
           className="form-control mb-2 w-50"
           value={description}
           onChange={handleChange}
+          style={{ resize: "none" }}
         />
         <select
           name="state"
