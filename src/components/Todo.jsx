@@ -47,8 +47,11 @@ function Todo({ todo, deleteTodo, completeTodo, handleChangeTodo }) {
             </div>
           </div>
           <div>
-            <span className="badge rounded-pill bg-primary">
+            <span className="badge rounded-pill bg-primary m-2">
               {priority && "Prioridad"}
+            </span>
+            <span className="badge rounded-pill bg-success m-2">
+              {state === "completada" && "Completada"}
             </span>
           </div>
         </div>

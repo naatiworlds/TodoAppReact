@@ -6,7 +6,7 @@ function Todos({
   deleteTodo,
   completeTodo,
   cambiarModoEdicion,
-  handleChangeTodo
+  handleChangeTodo,
 }) {
   const sortedTodos = [...todos].sort((a, b) => {
     if (a.priority && !b.priority) return -1;

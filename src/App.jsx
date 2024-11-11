@@ -1,8 +1,8 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Formulario from "./components/Formulario";
 import Todos from "./components/Todos";
 
-const initialStateTodo = [
+const initialStateTodo = JSON.parse(localStorage.getItem("todos")) || [
   {
     id: 1,
     title: "tarea 1",
@@ -38,44 +38,50 @@ const initialStateTodo = [
     state: "pendiente",
     priority: false,
   },
+  // Puedes añadir más tareas de ejemplo si deseas
 ];
 
 function App() {
   const [todos, setTodos] = useState(initialStateTodo);
   const [modoEdicion, setModoEdicion] = useState(false);
-  const [tareaActual, setTareaActual] = useState(null); // Estado para almacenar la tarea en edición
+  const [tareaActual, setTareaActual] = useState(null);
+
+  // Efecto para guardar en localStorage cuando el estado de 'todos' cambie
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  const handleChangeTodo = (todo) => {
+    setModoEdicion(true); // Activar modo edición
+    setTareaActual(todo); // Cargar la tarea a editar
+  };
 
   const addTodos = (todo) => {
     setTodos([...todos, todo]);
   };
 
   const deleteTodo = (id) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const completeTodo = (id) => {
-    const newArray = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.state = todo.state === "completada" ? "pendiente" : "completada";
-      }
-      return todo;
-    });
-    setTodos(newArray);
-  };
-
-  const handleChangeTodo = (todo) => {
-    setModoEdicion(true); // Cambia a modo de edición
-    setTareaActual(todo); // Establece la tarea seleccionada
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id
+          ? { ...todo, state: todo.state === "completada" ? "pendiente" : "completada" }
+          : todo
+      )
+    );
   };
 
   const updateTodo = (todoActualizado) => {
-    const newTodos = todos.map((todo) =>
-      todo.id === todoActualizado.id ? todoActualizado : todo
+    setTodos(
+      todos.map((todo) =>
+        todo.id === todoActualizado.id ? todoActualizado : todo
+      )
     );
-    setTodos(newTodos);
-    setModoEdicion(false); // Salir de modo de edición
-    setTareaActual(null); // Limpiar la tarea actual
+    setModoEdicion(false);
+    setTareaActual(null); // Limpiar la tarea actual después de actualizarla
   };
 
   return (
@@ -83,15 +89,14 @@ function App() {
       <Formulario
         addTodos={addTodos}
         modoEdicion={modoEdicion}
-        tareaActual={tareaActual} // Pasamos la tarea actual
-        updateTodo={updateTodo} // Pasamos la función de actualizar
-        handleChangeTodo={handleChangeTodo}
+        tareaActual={tareaActual}
+        updateTodo={updateTodo}
       />
       <Todos
         todos={todos}
         deleteTodo={deleteTodo}
         completeTodo={completeTodo}
-        handleChangeTodo={handleChangeTodo} // Pasamos la función de editar
+        handleChangeTodo={handleChangeTodo}
       />
     </Fragment>
   );
