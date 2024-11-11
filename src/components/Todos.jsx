@@ -8,6 +8,7 @@ function Todos({
   cambiarModoEdicion,
   handleChangeTodo,
 }) {
+  // Ordenación de los todos en cuestión de la prioridad y si está completada o no
   const sortedTodos = [...todos].sort((a, b) => {
     if (a.priority && !b.priority) return -1;
     if (!a.priority && b.priority) return 1;
@@ -19,12 +20,10 @@ function Todos({
   });
 
   return (
-    <div>
+    <div className="w-50">
       <h2 className="text-center m-2 p-2">Lista de tareas</h2>
       <ul
-        className="list-group-item 
-      w-75 
-      m-auto"
+        className="list-group-item"
       >
         {sortedTodos.map((todos) => (
           <Todo

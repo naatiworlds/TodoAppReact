@@ -29,6 +29,7 @@ function Formulario({
     }
   }, [tareaActual]);
 
+  // Función de validación antes de enviar los datos del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
     const { title, description } = todo;
@@ -41,7 +42,7 @@ function Formulario({
       });
       return;
     }
-
+    // Comprobación del modo edición
     if (modoEdicion) {
       updateTodo(todo); // Llamar a updateTodo para actualizar la tarea
       Swal.fire({
@@ -67,6 +68,7 @@ function Formulario({
     });
   };
 
+  // Función para detectar cambios en los inputs
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
     setTodo({
@@ -78,7 +80,7 @@ function Formulario({
   const { title, description, state, priority } = todo;
 
   return (
-    <div>
+    <div className="w-50">
       <h2 className="text-center m-2 p-2">Nati Todo App</h2>
       <form
         className="d-flex flex-column justify-content-center align-content-center flex-wrap"

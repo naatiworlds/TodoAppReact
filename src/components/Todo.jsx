@@ -7,7 +7,7 @@ function Todo({ todo, deleteTodo, completeTodo, handleChangeTodo }) {
     <div>
       <li className="list-group-item">
         <div className="d-flex justify-content-between align-items-start align-content-center">
-          <div>
+          <div className="">
             <div>
               <h5
                 className={
@@ -28,7 +28,7 @@ function Todo({ todo, deleteTodo, completeTodo, handleChangeTodo }) {
                 {description}
               </p>
             </div>
-            <div className="d-flex flex-row gap-2">
+            <div className="d-flex flex-row gap-2 ">
               <button className="btn btn-danger" onClick={() => deleteTodo(id)}>
                 Eliminar
               </button>
@@ -47,10 +47,10 @@ function Todo({ todo, deleteTodo, completeTodo, handleChangeTodo }) {
             </div>
           </div>
           <div>
-            <span className="badge rounded-pill bg-primary m-2">
+            <span className="badge rounded-pill bg-primary">
               {priority && "Prioridad"}
             </span>
-            <span className="badge rounded-pill bg-success m-2">
+            <span className="badge rounded-pill bg-success">
               {state === "completada" && "Completada"}
             </span>
           </div>

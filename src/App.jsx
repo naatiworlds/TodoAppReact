@@ -68,7 +68,10 @@ function App() {
     setTodos(
       todos.map((todo) =>
         todo.id === id
-          ? { ...todo, state: todo.state === "completada" ? "pendiente" : "completada" }
+          ? {
+              ...todo,
+              state: todo.state === "completada" ? "pendiente" : "completada",
+            }
           : todo
       )
     );
@@ -86,18 +89,20 @@ function App() {
 
   return (
     <Fragment>
-      <Formulario
-        addTodos={addTodos}
-        modoEdicion={modoEdicion}
-        tareaActual={tareaActual}
-        updateTodo={updateTodo}
-      />
-      <Todos
-        todos={todos}
-        deleteTodo={deleteTodo}
-        completeTodo={completeTodo}
-        handleChangeTodo={handleChangeTodo}
-      />
+      <section className="d-flex flex-row align-content-center justify-content-center align-items-center">
+        <Formulario
+          addTodos={addTodos}
+          modoEdicion={modoEdicion}
+          tareaActual={tareaActual}
+          updateTodo={updateTodo}
+        />
+        <Todos
+          todos={todos}
+          deleteTodo={deleteTodo}
+          completeTodo={completeTodo}
+          handleChangeTodo={handleChangeTodo}
+        />
+      </section>
     </Fragment>
   );
 }
