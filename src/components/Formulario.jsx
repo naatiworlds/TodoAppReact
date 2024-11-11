@@ -79,7 +79,7 @@ function Formulario({
 
   return (
     <div>
-      <h2 className="text-center m-2 p-2">Formulario Controlado</h2>
+      <h2 className="text-center m-2 p-2">Nati Todo App</h2>
       <form
         className="d-flex flex-column justify-content-center align-content-center flex-wrap"
         onSubmit={handleSubmit}
