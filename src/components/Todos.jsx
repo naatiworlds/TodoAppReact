@@ -10,14 +10,18 @@ function Todos({
 }) {
   // Ordenación de los todos en cuestión de la prioridad y si está completada o no
   const sortedTodos = [...todos].sort((a, b) => {
+    // 1. Ordenar por estado: las no completadas primero
+    if (a.state !== "completada" && b.state === "completada") return -1;
+    if (a.state === "completada" && b.state !== "completada") return 1;
+  
+    // 2. Si ambos están en el mismo estado (ambos completados o ambos no completados), ordenamos por prioridad
     if (a.priority && !b.priority) return -1;
     if (!a.priority && b.priority) return 1;
-
-    if (a.state === "completada" && b.state !== "completada") return 1;
-    if (a.state !== "completada" && b.state === "completada") return -1;
-
+  
+    // 3. Si ambos tienen la misma prioridad y el mismo estado, mantener el orden actual
     return 0;
   });
+  
 
   return (
     <div className="w-50">

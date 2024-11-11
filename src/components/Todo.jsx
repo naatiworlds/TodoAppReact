@@ -28,8 +28,9 @@ function Todo({ todo, deleteTodo, completeTodo, handleChangeTodo }) {
                 {description}
               </p>
             </div>
-            <div className="d-flex flex-row gap-2 ">
-              <button className="btn btn-danger" onClick={() => deleteTodo(id)}>
+            <div className="d-flex flex-row gap-2">
+              <button className="btn btn-danger m-2" 
+              onClick={() => deleteTodo(id)}>
                 Eliminar
               </button>
               <button
