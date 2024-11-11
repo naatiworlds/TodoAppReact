@@ -33,13 +33,13 @@ function Todo({ todo, deleteTodo, completeTodo, handleChangeTodo }) {
                 Eliminar
               </button>
               <button
-                className="btn btn-warning"
+                className="btn btn-warning m-2"
                 onClick={() => completeTodo(id)}
               >
                 Completar
               </button>
               <button
-                className="btn btn-info"
+                className="btn btn-info m-2"
                 onClick={() => handleChangeTodo(todo)} // Enviar todo el objeto 'todo'
               >
                 Editar
